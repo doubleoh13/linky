@@ -18,6 +18,19 @@ return [
             ],
             'process_webhook_job' => ProcessTodoistWebhook::class,
         ],
+        [
+            'name' => 'notion',
+            'signing_secret' => env('NOTION_WEBHOOK_TOKEN'),
+            'signature_header_name' => 'X-Notion-Token',
+            'signature_validator' => \App\Services\WebhookClient\TokenSignatureValidator::class,
+            'webhook_profile' => \Spatie\WebhookClient\WebhookProfile\ProcessEverythingWebhookProfile::class,
+            'webhook_response' => \Spatie\WebhookClient\WebhookResponse\DefaultRespondsTo::class,
+            'webhook_model' => \Spatie\WebhookClient\Models\WebhookCall::class,
+            'store_headers' => [
+                'X-Notion-Event-Type',
+            ],
+            'process_webhook_job' => \App\Jobs\ProcessNotionWebhook::class,
+        ]
     ],
 
     /*

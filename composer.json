@@ -9,6 +9,7 @@
         "php": "^8.3",
         "laravel/framework": "^11.35",
         "laravel/tinker": "^2.9",
+        "lorisleiva/laravel-actions": "^2.8",
         "mariosimao/notion-sdk-php": "^1.14",
         "spatie/laravel-data": "^4.11",
         "spatie/laravel-webhook-client": "^3.4"

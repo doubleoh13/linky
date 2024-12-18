@@ -35,6 +35,15 @@ return [
         ],
     ],
 
+    'notion' => [
+        'webhook_token' => env('NOTION_WEBHOOK'),
+        'token' => env('NOTION_TOKEN'),
+        'databases' => [
+            'projects' => env('NOTION_PROJECTS_DATABASE_ID'),
+            'tasks' => env('NOTION_TASKS_DATABASE_ID'),
+        ]
+    ],
+
     'todoist' => [
         'client_id' => env('TODOIST_CLIENT_ID'),
         'client_secret' => env('TODOIST_CLIENT_SECRET'),
