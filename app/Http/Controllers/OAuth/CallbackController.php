@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\OAuth;
 
-use App\Models\ServiceAccessToken;
+use App\Models\Connection;
 use App\Services\Google\GoogleService;
 use Cache;
 use Http;
@@ -57,7 +57,7 @@ class CallbackController
 
         $authorization = $this->google->authenticate($request->code);
 
-        ServiceAccessToken::updateOrCreate([
+        Connection::updateOrCreate([
             'service_name' => 'google',
         ], [
             'access_token' => $authorization['access_token'],

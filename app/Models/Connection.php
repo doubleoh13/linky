@@ -4,10 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ServiceAccessToken extends Model
+class Connection extends Model
 {
-    protected $guarded = [];
-
     protected function casts(): array
     {
         return [

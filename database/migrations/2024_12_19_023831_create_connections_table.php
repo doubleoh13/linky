@@ -8,10 +8,10 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('service_access_tokens', function (Blueprint $table) {
+        Schema::create('connections', function (Blueprint $table) {
             $table->id();
-            $table->string('service_name');
-            $table->string('service_id')->nullable();
+            $table->string('provider');
+            $table->string('description')->nullable();
             $table->string('access_token');
             $table->text('refresh_token')->nullable();
             $table->dateTime('expires_at')->nullable();
@@ -22,6 +22,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('service_access_tokens');
+        Schema::dropIfExists('connections');
     }
 };
