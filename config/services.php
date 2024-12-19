@@ -35,13 +35,18 @@ return [
         ],
     ],
 
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect' => env('GOOGLE_REDIRECT_URI'),
+    ],
     'notion' => [
         'webhook_token' => env('NOTION_WEBHOOK'),
         'token' => env('NOTION_TOKEN'),
         'databases' => [
             'projects' => env('NOTION_PROJECTS_DATABASE_ID'),
             'tasks' => env('NOTION_TASKS_DATABASE_ID'),
-        ]
+        ],
     ],
 
     'todoist' => [

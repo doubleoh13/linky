@@ -5,4 +5,5 @@ return [
     App\Providers\TodoistServiceProvider::class,
     App\Providers\NotionServiceProvider::class,
     App\Providers\EventServiceProvider::class,
+    App\Providers\GoogleServiceProvider::class,
 ];
