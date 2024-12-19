@@ -14,6 +14,7 @@ use App\Events\Todoist\TaskCompleted;
 use App\Events\Todoist\TaskDeleted;
 use App\Events\Todoist\TaskUncompleted;
 use App\Events\Todoist\TaskUpdated;
+use Log;
 use Spatie\WebhookClient\Jobs\ProcessWebhookJob;
 
 class ProcessTodoistWebhook extends ProcessWebhookJob
@@ -22,6 +23,9 @@ class ProcessTodoistWebhook extends ProcessWebhookJob
     {
         $eventName = $this->webhookCall->payload['event_name'];
         $eventData = $this->webhookCall->payload['event_data'];
+
+        Log::info("Todoist {$eventName} received");
+        Log::debug('Todoist event data', $eventData);
 
         match ($eventName) {
             'item:added' => TaskAdded::dispatch(Task::from($eventData)),

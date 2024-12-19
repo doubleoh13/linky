@@ -2,7 +2,7 @@
 
 namespace App\Actions;
 
-use App\Exceptions\TodoistSyncException;
+use App\Exceptions\TodoistClientException;
 use App\Models\TodoistTask;
 use App\Services\TodoistService;
 use Carbon\Carbon;
@@ -28,7 +28,7 @@ class SyncFromTodoist
     public function __construct(private readonly TodoistService $todoist) {}
 
     /**
-     * @throws TodoistSyncException
+     * @throws TodoistClientException
      * @throws ConnectionException
      */
     public function handle(bool $doFullSync = false): void
@@ -46,7 +46,7 @@ class SyncFromTodoist
 
         try {
             $this->handle($command->option('full'));
-        } catch (TodoistSyncException|ConnectionException $e) {
+        } catch (TodoistClientException|ConnectionException $e) {
             $command->error("Failed to sync data from Todoist: {$e->getMessage()}");
 
             return CMD::FAILURE;

@@ -4,7 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 
-class TodoistSyncException extends Exception
+class TodoistClientException extends Exception
 {
     public function __construct(protected int $statusCode, protected string $responseMessage)
     {
