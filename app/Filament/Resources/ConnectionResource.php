@@ -3,15 +3,13 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ConnectionResource\Pages;
-use App\Filament\Resources\ConnectionResource\RelationManagers;
 use App\Models\Connection;
+use App\Support\Enums\ConnectionProvider;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ConnectionResource extends Resource
 {
@@ -23,14 +21,15 @@ class ConnectionResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('provider')
-                    ->required()
-                    ->maxLength(255),
+                Forms\Components\Select::make('provider')
+                    ->disabledOn('edit')
+                    ->options(ConnectionProvider::class)
+                    ->required(),
                 Forms\Components\TextInput::make('description')
+                    ->visibleOn('edit')
                     ->maxLength(255)
                     ->default(null),
-                Forms\Components\DateTimePicker::make('expires_at'),
-            ]);
+            ])->columns(1);
     }
 
     public static function table(Table $table): Table
@@ -41,9 +40,6 @@ class ConnectionResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('description')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('expires_at')
-                    ->dateTime()
-                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -77,8 +73,6 @@ class ConnectionResource extends Resource
     {
         return [
             'index' => Pages\ListConnections::route('/'),
-            'create' => Pages\CreateConnection::route('/create'),
-            'edit' => Pages\EditConnection::route('/{record}/edit'),
         ];
     }
 }

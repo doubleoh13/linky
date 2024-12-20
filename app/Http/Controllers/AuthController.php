@@ -22,13 +22,18 @@ class AuthController
         $user = User::where('google_id', $googleUser->id)->first();
         $user ??= User::where('email', $googleUser->email)->first();
 
-        $user ??= CreateNewUser::run(
-            $googleUser->name,
-            $googleUser->email,
-            googleId: $googleUser->id,
-            googleToken: $googleUser->token,
-            googleRefreshToken: $googleUser->refreshToken
-        );
+        $user ??= CreateNewUser::run($googleUser->name, $googleUser->email);
+
+        $data = [
+            'google_id' => $googleUser->id,
+            'avatar' => $googleUser->avatar,
+            'google_token' => $googleUser->token,
+        ];
+        if ($googleUser->refreshToken) {
+            $data['google_refresh_token'] = $googleUser->refreshToken;
+        }
+
+        $user->update($data);
 
         Auth::login($user);
 

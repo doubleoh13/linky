@@ -17,10 +17,7 @@ class CreateNewUser
         string $name,
         string $email,
         ?string $password = null,
-        ?string $googleId = null,
-        ?string $googleToken = null,
-        ?string $googleRefreshToken = null,
-    ) {
+    ): User {
         $authorizedUsers = config('auth.authorized_users');
 
         if (! in_array($email, $authorizedUsers)) {
@@ -31,9 +28,6 @@ class CreateNewUser
             'name' => $name,
             'email' => $email,
             'password' => $password,
-            'google_id' => $googleId,
-            'google_token' => $googleToken,
-            'google_refresh_token' => $googleRefreshToken,
         ]);
     }
 }

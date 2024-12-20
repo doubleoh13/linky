@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\OAuth;
 
+use App\Filament\Resources\ConnectionResource;
 use App\Models\Connection;
 use App\Services\Google\GoogleService;
 use Cache;
@@ -57,14 +58,18 @@ class CallbackController
 
         $authorization = $this->google->authenticate($request->code);
 
-        Connection::updateOrCreate([
-            'service_name' => 'google',
-        ], [
+        $data = [
             'access_token' => $authorization['access_token'],
-            'refresh_token' => $authorization['refresh_token'],
             'expires_at' => now()->addSeconds($authorization['expires_in']),
-        ]);
+            'scope' => $authorization['scope'],
+        ];
 
-        return response()->json(['message' => 'Access token successfully retrieved.']);
+        if (array_key_exists('refresh_token', $authorization)) {
+            $data['refresh_token'] = $authorization['refresh_token'];
+        }
+
+        Connection::updateOrCreate(['provider' => 'google'], $data);
+
+        return redirect()->to(ConnectionResource::getUrl());
     }
 }

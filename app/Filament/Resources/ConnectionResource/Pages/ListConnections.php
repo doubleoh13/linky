@@ -13,7 +13,11 @@ class ListConnections extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\CreateAction::make()
+                ->createAnother(false)
+                ->using(function (array $data) {
+                    $this->redirect(route("oauth.redirect.{$data['provider']}"));
+                }),
         ];
     }
 }

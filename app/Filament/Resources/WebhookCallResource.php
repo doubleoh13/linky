@@ -35,9 +35,6 @@ class WebhookCallResource extends Resource
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
             ]);
     }
 
@@ -52,8 +49,6 @@ class WebhookCallResource extends Resource
     {
         return [
             'index' => Pages\ListWebhookCalls::route('/'),
-            'create' => Pages\CreateWebhookCall::route('/create'),
-            'edit' => Pages\EditWebhookCall::route('/{record}/edit'),
         ];
     }
 }
