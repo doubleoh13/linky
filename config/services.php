@@ -35,4 +35,35 @@ return [
         ],
     ],
 
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect' => env('GOOGLE_REDIRECT_URL'),
+        'webhook_endpoint_host' => env('GOOGLE_WEBHOOK_ENDPOINT_HOST', env('APP_URL')),
+        'service_account_email' => env('GOOGLE_SERVICE_ACCOUNT_EMAIL'),
+        'scopes' => [
+            'https://www.googleapis.com/auth/gmail.modify',
+        ],
+        'topics' => [
+            'email-event' => env('GOOGLE_EMAIL_EVENT_TOPIC'),
+        ],
+    ],
+    'notion' => [
+        'webhook_token' => env('NOTION_WEBHOOK'),
+        'token' => env('NOTION_TOKEN'),
+        'databases' => [
+            'projects' => env('NOTION_PROJECTS_DATABASE_ID'),
+            'tasks' => env('NOTION_TASKS_DATABASE_ID'),
+        ],
+    ],
+
+    'todoist' => [
+        'token' => env('TODOIST_TOKEN'),
+    ],
+
+    'homeassistant' => [
+        'host' => env('HOMEASSISTANT_HOST'),
+        'token' => env('HOMEASSISTANT_TOKEN'),
+    ],
+
 ];

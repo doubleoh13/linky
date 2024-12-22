@@ -1,19 +1,22 @@
 <?php
 
+use App\Http\Middleware\AddContext;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
-        api: __DIR__.'/../routes/api.php',
+        web: __DIR__.'/../routes/web.php',
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
-        apiPrefix: '',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->prependToGroup('web', AddContext::class)
+            ->prependToGroup('api', AddContext::class)
+            ->validateCsrfTokens([
+                '/webhooks/*',
+            ]);
     })
-    ->withExceptions(function (Exceptions $exceptions) {
-        $exceptions->shouldRenderJsonWhen(fn () => true);
-    })->create();
+    ->withExceptions(function (Exceptions $exceptions) {})
+    ->create();

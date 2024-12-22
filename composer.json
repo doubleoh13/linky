@@ -7,8 +7,20 @@
     "license": "MIT",
     "require": {
         "php": "^8.3",
+        "calebporzio/sushi": "^2.5",
+        "croustibat/filament-jobs-monitor": "^2.5",
+        "filament/filament": "^3.2",
+        "google/apiclient": "^2.18",
         "laravel/framework": "^11.35",
-        "laravel/tinker": "^2.9"
+        "laravel/socialite": "^5.16",
+        "laravel/tinker": "^2.9",
+        "lorisleiva/laravel-actions": "^2.8",
+        "mariosimao/notion-sdk-php": "^1.14",
+        "owenvoke/blade-fontawesome": "^2.8",
+        "socialiteproviders/todoist": "^4.3",
+        "spatie/laravel-data": "^4.11",
+        "spatie/laravel-webhook-client": "^3.4",
+        "ublabs/blade-simple-icons": "^0.138.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
@@ -17,7 +29,9 @@
         "laravel/sail": "^1.26",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.1",
-        "phpunit/phpunit": "^11.0.1"
+        "phpunit/phpunit": "^11.0.1",
+        "spatie/ray": "^1.41",
+        "wulfheart/laravel-actions-ide-helper": "^0.8.0"
     },
     "autoload": {
         "psr-4": {
@@ -34,7 +48,8 @@
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "@php artisan package:discover --ansi",
+            "@php artisan filament:upgrade"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"

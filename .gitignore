@@ -21,3 +21,6 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+/app/Http/Controllers/TestController.php
+/app/Actions/TestAction.php
+/_ide_helper_actions.php

@@ -2,4 +2,9 @@
 
 return [
     App\Providers\AppServiceProvider::class,
+    App\Providers\EventServiceProvider::class,
+    App\Providers\Filament\AdminPanelProvider::class,
+    App\Providers\GoogleServiceProvider::class,
+    App\Providers\NotionServiceProvider::class,
+    App\Providers\TodoistServiceProvider::class,
 ];
