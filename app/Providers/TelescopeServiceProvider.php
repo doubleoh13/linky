@@ -21,6 +21,7 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
         $this->hideSensitiveRequestDetails();
 
         Telescope::filterBatch(function (Collection $entries) {
+            return true;
             if ($this->app->environment('local')) {
                 return true;
             }
