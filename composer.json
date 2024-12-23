@@ -12,6 +12,7 @@
         "filament/filament": "^3.2",
         "google/apiclient": "^2.18",
         "laravel/framework": "^11.35",
+        "laravel/horizon": "^5.30",
         "laravel/socialite": "^5.16",
         "laravel/tinker": "^2.9",
         "lorisleiva/laravel-actions": "^2.8",
